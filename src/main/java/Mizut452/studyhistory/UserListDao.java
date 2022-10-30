@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.toList;
-
 @Service
 public class UserListDao {
     private final JdbcTemplate jdbcTemplate;
@@ -23,7 +21,7 @@ public class UserListDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void create(UserList userList) {
+    public void add(UserList userList) {
         SqlParameterSource param = new BeanPropertySqlParameterSource(userList);
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("userlist");

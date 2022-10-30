@@ -30,10 +30,15 @@ public class HomeController {
     }
 
     @GetMapping("/createaccount")
-    public String createAccount(Model model) {
+    public String createAccount() {
+        return "createAccount";
+    }
+
+    @GetMapping("/userlist")
+    public String userlistpage(Model model) {
         List<UserList> userLists = dao.findAll();
         model.addAttribute("userList", userLists);
-        return "createAccount";
+        return "UserList";
     }
 
     @RequestMapping("/add")
@@ -45,7 +50,7 @@ public class HomeController {
         password = encoder.encode(password);
 
         UserList item = new UserList(id, mailaddress, username, password);
-        dao.create(item);
+        dao.add(item);
 
         return "redirect:/userlist";
     }
